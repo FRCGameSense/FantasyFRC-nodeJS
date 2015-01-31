@@ -6,7 +6,14 @@ var express = require('express');
 var app = express();
 
 //set up handlebars view engine
-var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express3-handlebars').create({
+    defaultLayout:'main',
+    helpers: {
+        static: function(name) {
+            return require('./lib/static.js').map(name);
+        }
+    }
+});
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
@@ -49,6 +56,12 @@ app.get('/about', function(req, res){
     res.render('submitBugReport');
 });
 
+//create partials
+app.use(function(req, res, next){
+    if(!res.locals.partials) res.locals.partials = {};
+    //res.locals.partials.weather = getWeatherData();
+    next();
+});
 
 //404 catch-all handler (middleware)
 app.use(function(req, res){
