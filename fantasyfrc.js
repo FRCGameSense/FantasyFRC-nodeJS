@@ -8,9 +8,15 @@ var app = express();
 //set up handlebars view engine
 var handlebars = require('express3-handlebars').create({
     defaultLayout:'main',
-    helpers: {
+    helpers: { //define special links for handlebars that go in {{these}}
         static: function(name) {
             return require('./lib/static.js').map(name);
+        },
+        link: function() {
+            return require('./lib/login.js').link();
+        },
+        status: function() {
+            return require('./lib/login.js').status();
         }
     }
 });
@@ -22,37 +28,47 @@ app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
 
+//define routes
 app.get('/', function(req, res){
     res.render('home');
 });
-app.get('/about', function(req, res){
+app.get('/account', function(req, res){
     res.render('account');
 });
 app.get('/about', function(req, res){
     res.render('about');
 });
-app.get('/about', function(req, res){
+app.get('/contact', function(req, res){
+    res.render('contact');
+});
+app.get('/dashboard', function(req, res){
+    res.render('dashboard');
+});
+app.get('/league', function(req, res){
     res.render('league');
 });
-app.get('/about', function(req, res){
+app.get('/lineup', function(req, res){
     res.render('lineup');
 });
-app.get('/about', function(req, res){
+app.get('/login', function(req, res){
     res.render('login');
 });
-app.get('/about', function(req, res){
+app.get('/loginneeded', function(req, res){
+    res.render('loginneeded');
+});
+app.get('/matchups', function(req, res){
     res.render('matchups');
 });
-app.get('/about', function(req, res){
+app.get('/register', function(req, res){
     res.render('register');
 });
-app.get('/about', function(req, res){
+app.get('/rules', function(req, res){
     res.render('rules');
 });
-app.get('/about', function(req, res){
+app.get('/statistics', function(req, res){
     res.render('statistics');
 });
-app.get('/about', function(req, res){
+app.get('/submitBugReport', function(req, res){
     res.render('submitBugReport');
 });
 

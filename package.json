@@ -5,5 +5,13 @@
     "bootstrap": "^3.3.2",
     "express": "^4.0.0",
     "express3-handlebars": "^0.5.2"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cafe-mocha": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-less": "^1.0.0",
+    "grunt-exec": "^0.4.6",
+    "grunt-lint-pattern": "^0.1.4"
   }
 }
