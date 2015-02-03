@@ -2,7 +2,21 @@
  * Created by steph on 1/29/15.
  */
 var express = require('express');
+var credentials = require('./credentials.js');
+var database = require('./controllers/database.js');
+var https = require('https');
+var http = require('http');
 
+
+//adding database schema
+var Team = require('./models/teams.js');
+var Event = require('./models/event.js');
+var League = require('./models/league.js');
+var LeagueMember = require('./models/leaguemember.js');
+var TeamEvent = require('./models/teamevent.js');
+var User = require('./models/user.js');
+
+//create app
 var app = express();
 
 //set up handlebars view engine
@@ -26,51 +40,50 @@ app.set('view engine', 'handlebars');
 //set port
 app.set('port', process.env.PORT || 3000);
 
+//set up static magic mapper for handlebars
 app.use(express.static(__dirname + '/public'));
 
-//define routes
-app.get('/', function(req, res){
-    res.render('home');
+//set up cookies and sessions
+/*var MongoSessionStore = require('session-mongoose')(require('connect'));
+var sessionStore = new MongoSessionStore({url: credentials.mongo.connectionString});*/
+
+app.use(require('cookie-parser')(credentials.cookieSecret));
+//app.use(require('express-session')({store: sessionStore}));
+
+//set up routes
+require('./routes.js')(app);
+
+//mongoose connection
+var mongoose = require('mongoose');
+var opts = {
+    server: {
+        socketOptions: {keepAlive: 1}
+    }
+};
+switch(app.get('env')){
+    case 'development':
+        mongoose.connect(credentials.mongo.development.connectionString, opts);
+        break;
+    case 'production':
+        mongoose.connect(credentials.mongo.production.connectionString, opts);
+        break;
+    default:
+        throw new Error('Unknown execution environment: ' + app.get('env'));
+}
+
+//get twitter data
+var twitter = require('./lib/twitter')({
+    consumerKey: credentials.twitter.consumerKey,
+    consumerSecret: credentials.twitter.consumerSecret
 });
-app.get('/account', function(req, res){
-    res.render('account');
+
+twitter.search('#frcbtl', 10, function(result){
+    //tweets will be in result.statuses
 });
-app.get('/about', function(req, res){
-    res.render('about');
-});
-app.get('/contact', function(req, res){
-    res.render('contact');
-});
-app.get('/dashboard', function(req, res){
-    res.render('dashboard');
-});
-app.get('/league', function(req, res){
-    res.render('league');
-});
-app.get('/lineup', function(req, res){
-    res.render('lineup');
-});
-app.get('/login', function(req, res){
-    res.render('login');
-});
-app.get('/loginneeded', function(req, res){
-    res.render('loginneeded');
-});
-app.get('/matchups', function(req, res){
-    res.render('matchups');
-});
-app.get('/register', function(req, res){
-    res.render('register');
-});
-app.get('/rules', function(req, res){
-    res.render('rules');
-});
-app.get('/statistics', function(req, res){
-    res.render('statistics');
-});
-app.get('/submitBugReport', function(req, res){
-    res.render('submitBugReport');
-});
+
+Team.update(
+    {$push: {number: database('team/frc254')}},
+    console.log('fantasyfrc.js stuff has been pushed'));
 
 //create partials
 app.use(function(req, res, next){
@@ -88,7 +101,6 @@ app.use(function(req, res){
 //custom 500 page
 app.use(function(err, req, res, next){
     console.error(err.stack);
-    res.type('text/plain');
     res.status(500);
     res.render('500');
 });
