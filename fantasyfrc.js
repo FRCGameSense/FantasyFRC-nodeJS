@@ -81,9 +81,16 @@ twitter.search('#frcbtl', 10, function(result){
     //tweets will be in result.statuses
 });
 
-Team.update(
-    {$push: {number: database('team/frc254')}},
-    console.log('fantasyfrc.js stuff has been pushed'));
+database('team/frc254');
+/*var team254 = new Team;
+team254.number = 254;
+team254.markModified('date');
+team254.save(function(cb){
+    console.log(cb);
+});
+    console.log('fantasyfrc.js stuff has been pushed');
+
+team254.save;*/
 
 //create partials
 app.use(function(req, res, next){

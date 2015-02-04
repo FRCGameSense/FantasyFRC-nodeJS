@@ -13,7 +13,7 @@ module.exports = function(data){
     //this variable will be invisible outside of this module
     var options = {
         hostname: 'www.thebluealliance.com',
-        path: '/api/v2/'+data,
+        path: '/api/v2/' + data,
         headers: {
             'X-TBA-App-Id': 'gamesense:fantasyfrcbeta:v00'
         }
@@ -32,7 +32,7 @@ module.exports = function(data){
             console.log(str);
             console.log(JSON.parse(str).team_number);
             var teamnumber = JSON.parse(str).team_number;
-            Team.update(
+/*            new Team(
                 {number: teamnumber},
                 {name: 'testteam'},
                 {totalPoints: 351},
@@ -40,7 +40,7 @@ module.exports = function(data){
                 {totalTournamentPoints: 251},
                 {totalAwardsPoints: 156},
                 {$push: {events: ['test event1', 'test event2', 'test event3']}},
-                {upser: true},
+                {upsert: true},
                 function(err){
                     if(err){
                         console.error(err.stack);
@@ -49,10 +49,22 @@ module.exports = function(data){
                             intro: 'Oooops!',
                             message: 'There was an error processing your request.'
                         };
-                        return redirect(303, '/vacations');
                     }
-                },
-                console.log('databases.js stuff has been pushed'));
+                });
+ */
+            var t = new Team;
+            t.number = teamnumber;
+            t.name = 'new name';
+            t.totalPoints = 2345;
+            t.totalMatchPlayPoints = 135089;
+            t.totalTournamentPoints = 1349;
+            t.totalAwardsPoints = 349;
+            t.events = ['Shorewood', 'Mount Vernon', 'DCMP'];
+            t.markModified('date');
+            t.save(function(){
+
+            });
+            console.log('databases.js stuff has been pushed');
             return JSON.parse(str).teamnumber;
         });
     });

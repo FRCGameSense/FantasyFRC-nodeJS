@@ -9,5 +9,5 @@ var teamSchema = mongoose.Schema({
     totalAwardsPoints: Number,
     events: []
 });
-var Team = mongoose.model('Team', teamSchema);
+var Team = mongoose.model('Team', teamSchema, 'fantasyfrcbeta');
 module.exports = Team;
