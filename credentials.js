@@ -9,7 +9,8 @@ module.exports = {
         }
     },
     TBAdata: {
-        url: 'www.thebluealliance.com/api/v2'
+        url: 'www.thebluealliance.com',
+        path: '/api/v2/'
     },
     twitter: {
         consumerKey: 'kEiFiQrWp5YZA8GAMwxwsEbsG',
