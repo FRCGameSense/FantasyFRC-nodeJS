@@ -1,5 +1,5 @@
 var User = require('../models.user.js');
-//var userViewModel = require('../viewModels/user.js');
+//var userViewModel = require('../viewModels/userUpdate.js');
 
 /*
 exports = {

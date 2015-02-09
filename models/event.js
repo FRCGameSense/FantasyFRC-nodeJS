@@ -1,10 +1,14 @@
 var mongoose = require('mongoose');
 
 var eventSchema = mongoose.Schema({
-    eventName: String,
-    teamList: [],
+    key: String,
+    type: String,
+    district: String,
+    name: String,
+    teams: [],
     matchResults: [],
-    eventAverage: Number
+    pointAverage: Number,
+    alliances: []
 });
-var Event = mongoose.model('Event', eventSchema);
+var Event = mongoose.model('Event', eventSchema, 'events');
 module.exports = Event;

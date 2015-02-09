@@ -16,6 +16,9 @@ var LeagueMember = require('./models/leaguemember.js');
 var TeamEvent = require('./models/teamevent.js');
 var User = require('./models/user.js');
 
+//controllers
+var eventUpdate = require('./controllers/eventUpdate.js');
+
 //create app
 var app = express();
 
@@ -81,7 +84,7 @@ twitter.search('#frcbtl', 10, function(result){
     //tweets will be in result.statuses
 });
 
-database.nameNumUpdate('team/frc254');
+eventUpdate.eventUpdate('event/2013mawo');
 
 
 //create partials
