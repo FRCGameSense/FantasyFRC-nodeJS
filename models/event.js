@@ -3,9 +3,7 @@ var mongoose = require('mongoose');
 var eventSchema = mongoose.Schema({
     key: String,
     type: String,
-    district: String,
     name: String,
-    teams: [],
     matchResults: [],
     pointAverage: Number,
     alliances: []

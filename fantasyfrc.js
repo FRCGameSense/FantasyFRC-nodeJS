@@ -18,6 +18,7 @@ var User = require('./models/user.js');
 
 //controllers
 var eventUpdate = require('./controllers/eventUpdate.js');
+var teamUpdate = require('./controllers/teamUpdate.js');
 
 //create app
 var app = express();
@@ -84,7 +85,8 @@ twitter.search('#frcbtl', 10, function(result){
     //tweets will be in result.statuses
 });
 
-eventUpdate.eventUpdate('event/2013mawo');
+//eventUpdate.eventUpdate('event/2013mawo');
+teamUpdate.teamUpdate('frc190');
 
 
 //create partials
