@@ -8,7 +8,7 @@ var https = require('https');
 var http = require('http');
 
 
-//adding database schema
+/****** adding database schema ******/
 var Team = require('./models/teams.js');
 var Event = require('./models/event.js');
 var League = require('./models/league.js');
@@ -16,11 +16,11 @@ var LeagueMember = require('./models/leaguemember.js');
 var TeamEvent = require('./models/teamevent.js');
 var User = require('./models/user.js');
 
-//controllers
+/****** controllers ******/
 var eventUpdate = require('./controllers/eventUpdate.js');
 var teamUpdate = require('./controllers/teamUpdate.js');
 
-//create app
+/****** create app ******/
 var app = express();
 
 //set up handlebars view engine
@@ -41,23 +41,23 @@ var handlebars = require('express3-handlebars').create({
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-//set port
+/****** set port ******/
 app.set('port', process.env.PORT || 3000);
 
-//set up static magic mapper for handlebars
+/****** set up static magic mapper for handlebars ******/
 app.use(express.static(__dirname + '/public'));
 
-//set up cookies and sessions
+/****** set up cookies and sessions ******/
 /*var MongoSessionStore = require('session-mongoose')(require('connect'));
 var sessionStore = new MongoSessionStore({url: credentials.mongo.connectionString});*/
 
 app.use(require('cookie-parser')(credentials.cookieSecret));
 //app.use(require('express-session')({store: sessionStore}));
 
-//set up routes
+/****** set up routes ******/
 require('./routes.js')(app);
 
-//mongoose connection
+/****** mongoose connection ******/
 var mongoose = require('mongoose');
 var opts = {
     server: {
@@ -75,34 +75,34 @@ switch(app.get('env')){
         throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
-//get twitter data
-var twitter = require('./lib/twitter')({
+/****** get twitter data ******/
+/*var twitter = require('./lib/twitter')({
     consumerKey: credentials.twitter.consumerKey,
     consumerSecret: credentials.twitter.consumerSecret
 });
 
 twitter.search('#frcbtl', 10, function(result){
     //tweets will be in result.statuses
-});
+});*/
 
+/****** DATABASE CONTROLLERS ******/
 //eventUpdate.eventUpdate('event/2013mawo');
-teamUpdate.teamUpdate('frc190');
+teamUpdate.teamDetails('frc254', teamUpdate.teamUpdate('frc254', teamUpdate.matchUpdate('frc254', '2014cama')));
 
-
-//create partials
+/****** create partials ******/
 app.use(function(req, res, next){
     if(!res.locals.partials) res.locals.partials = {};
     //res.locals.partials.weather = getWeatherData();
     next();
 });
 
-//404 catch-all handler (middleware)
+/****** 404 catch-all handler (middleware) ******/
 app.use(function(req, res){
     res.status(404);
     res.render('404');
 });
 
-//custom 500 page
+/****** custom 500 page ******/
 app.use(function(err, req, res, next){
     console.error(err.stack);
     res.status(500);
