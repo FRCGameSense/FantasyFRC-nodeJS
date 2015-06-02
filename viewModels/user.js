@@ -1,4 +1,4 @@
-var User = require('../model/user.js');
+var User = require('../models/user.js');
 
 //convenience function for joining fields
 function smartJoin(arr, separator){

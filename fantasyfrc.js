@@ -87,7 +87,7 @@ twitter.search('#frcbtl', 10, function(result){
 
 /****** DATABASE CONTROLLERS ******/
 //eventUpdate.eventUpdate('event/2013mawo');
-teamUpdate.teamDetails('frc254', teamUpdate.teamUpdate('frc254', teamUpdate.matchUpdate('frc254', '2014cama')));
+//teamUpdate.teamDetails('frc254', teamUpdate.teamUpdate('frc254', teamUpdate.matchUpdate('frc254', '2014cama')));
 
 /****** create partials ******/
 app.use(function(req, res, next){

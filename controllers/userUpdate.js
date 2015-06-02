@@ -1,10 +1,10 @@
-var User = require('../models.user.js');
+var User = require('../models/user.js');
 var userViewModel = require('../viewModels/user.js');
 
 
-exports = {
+module.exports = {
     registerRoutes: function(app){
-        app.get('/login/:userName', this.home);
+//        app.get('/login/:userName', this.home);
         app.get('/account/:userName', this.account);
         app.get('/league/:userName', this.league);
         app.get('/matchups/:userName', this.matchups);
