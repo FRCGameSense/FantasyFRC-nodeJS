@@ -19,6 +19,7 @@ module.exports = function(userName){
         name: smartJoin([user.firstName, user.lastName]),
         email: String,
         leagueList: [],
+        leaguesOwned: [],
         teamsOwned: ([], [], [], [], [], [], [])
     }
 };

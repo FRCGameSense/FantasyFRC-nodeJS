@@ -10,7 +10,6 @@ module.exports = {
         app.get('/matchups/:userName', this.matchups);
 
         app.post('/update/:userName', this.ajaxUpdate);
-
     },
 
     home: function(req, res, next){

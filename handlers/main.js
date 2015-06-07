@@ -15,6 +15,8 @@ exports.contact = (function (req, res) {
     res.render('contact');
 });
 exports.dashboard = (function (req, res) {
+    if(!req.session.passport.user)
+        return res.redirect(303, '/loginneeded');
     res.render('dashboard');
 });
 exports.league = (function (req, res) {

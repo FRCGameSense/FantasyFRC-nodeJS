@@ -6,7 +6,8 @@ var credentials = require('./credentials.js');
 var database = require('./controllers/database.js');
 var https = require('https');
 var http = require('http');
-
+var passport = require('passport');
+var auth = require('./lib/auth.js');
 
 /****** adding database schema ******/
 var Team = require('./models/teams.js');
@@ -48,11 +49,25 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 
 /****** set up cookies and sessions ******/
-/*var MongoSessionStore = require('session-mongoose')(require('connect'));
-var sessionStore = new MongoSessionStore({url: credentials.mongo.connectionString});*/
+var MongoSessionStore = require('session-mongoose')(require('connect'));
+var sessionStore = new MongoSessionStore({url: credentials.mongo.development.connectionString});
 
 app.use(require('cookie-parser')(credentials.cookieSecret));
-//app.use(require('express-session')({store: sessionStore}));
+app.use(require('express-session')({store: sessionStore,
+    secret: credentials.cookieSecret,
+    resave: true,
+    saveUninitialized: true}));
+
+var auth = require('./lib/auth.js')(app, {
+    providers: credentials.authProviders,
+    successRedirect: '/dashboard',
+    failureRedirect: '/loginneeded'
+});
+auth.init() //links in Passport middleware:
+auth.init();
+
+//now we can specify our auth routes:
+auth.registerRoutes();
 
 /****** set up routes ******/
 require('./routes.js')(app);
@@ -76,14 +91,14 @@ switch(app.get('env')){
 }
 
 /****** get twitter data ******/
-/*var twitter = require('./lib/twitter')({
+var twitter = require('./lib/twitter')({
     consumerKey: credentials.twitter.consumerKey,
     consumerSecret: credentials.twitter.consumerSecret
 });
 
 twitter.search('#frcbtl', 10, function(result){
     //tweets will be in result.statuses
-});*/
+});
 
 /****** DATABASE CONTROLLERS ******/
 //eventUpdate.eventUpdate('event/2013mawo');

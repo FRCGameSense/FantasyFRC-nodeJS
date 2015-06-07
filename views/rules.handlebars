@@ -1,0 +1,93 @@
+<div class="container">
+    <h1 align="center">FantasyFRC Rules and Instructions</h1>
+    <h2>Getting Started</h2>
+    <h3>League Creation</h3>
+    Leagues are made up of 4 to 12 players
+    Anyone can create a league and send invites to their friends
+    On creation, leagues can be made public or private
+    People can search for existing public leagues and request to join
+    The league creator accepts or denies requests
+    Drafting options will not be available until the minimum 4 members are registered with the league
+
+    <h3>Initial Draft</h3>
+    The initial draft consists of 6 separate drafts, one for each week of the regional season
+    All weeks are drafted consecutively during the initial draft
+    The pool of teams for each week contains all teams registered to compete at a regional or district event that week.
+    Qualification events such as District Championships which occur during the same weeks as other regional and district events do not contribute teams to the pool for that week
+    Some events may be excluded from the pool for a given week due to scheduling mismatch with the “fantasy week” cycle
+    Teams are drafted from the pool for each week as “team instances”. For example if 254 competes Week 1 at  San Diego and Week 5 at Silicon Valley, those are considered separate “team instances” of Team 254 and may be drafted by different players for those respective weeks
+    The draft order for each week is randomly determined by the website
+    The draft for each week is serpentine for N players in the league
+    Round 1 is drafted 1-N
+    Round 2 is drafted N-1
+    Round 3 is drafted 1-N
+    All undrafted teams for each week remain available for players to swap as roster changes (See Section 3: Re-Drafting and Roster Changes)
+    The initial draft must be completed before midnight ET on the Wednesday before Week 1
+    The initial draft may be discarded and re-drafted as many times as desired prior to the cutoff time
+    Re-drafting the initial draft requires the entire draft to be redone including randomizing the draft order
+    New players may be added to the league after the initial draft takes place
+    This will automatically discard the initial draft and require a re-draft
+    New players may not be added after the initial draft locks in at the cutoff time
+
+    <h2>Rules</h2>
+    <h3>Single Week Re-Drafting and Roster Changes</h3>
+        During the competition season, each competition week’s roster will freeze at midnight ET the Wednesday before the competitions take place and remain frozen for the remainder of the season
+        Once a roster is frozen, no changes may be made to players’ rosters for that week
+        The first week freeze takes effect as soon as the initial draft locks in at the cutoff time
+        Prior to a roster freeze, the league may elect to re-draft any  individual week that has not yet completed
+        The original draft order for any week in the initial draft is preserved during a re-draft of that week
+        Players may drop and add teams to their roster for any week that is not frozen from the pool of undrafted teams for that week
+        A player must first indicate which two teams they would like to swap for a given week
+        The team being dropped from the roster is referred to as the “posted team”
+        The team being added to the roster is referred to as the “tagged team”
+        The tagged team becomes locked as soon as the posting is confirmed, and may not be “tagged” or added to a roster by any other players for swaps until the bidding process completes
+        The posted team enters a bidding period, where all other players may “bid” on the posted team
+        Roster changes do not take effect until after the bidding period expires
+        The bidding period lasts for 12 hours, or until the roster freeze takes effect for that week, whichever comes sooner
+        Teams which were added to a roster by any means less than 12 hours prior to being dropped are swapped immediately with no bidding period
+        During the bidding period, other players in the league may indicate that they would like to add the posted team to their by selecting a team they would like to drop from their roster for the corresponding week
+        All bids are ranked in reverse order from the current league standings. Thus, the player currently in last place in the league will have the highest ranked bid, and the player in first place in the league will have the lowest ranked bid
+        Bids are not viewable to other players in the league
+        At the end of the bidding period, the affected teams are added and dropped from rosters simultaneously
+        The posted team is dropped from the posting player’s roster and replaced with the tagged team
+        The highest ranked bid wins and the posted team is added to the winning bidder’s roster and their selected team is dropped from their roster. Teams dropped from rosters in this manner are immediately added to the undrafted pool for that week
+        If no bids were made, the posted team is dropped from the owner’s roster and added to the undrafted pool for the week
+
+    <h3>Season and Rankings</h3>
+        Players accumulate points from their teams during each week of the competition
+        A player’s point total is the sum of all fantasy points their teams have earned during the competition weeks. Teams only earn points for a player if they are on that player’s roster for that week
+        All players in a league are ranked from highest point total to lowest point total. Rankings are calculated at midnight on the Sunday following the completion of each competition week
+        At the end of the season, the highest ranked player wins the league.
+
+        <h3>Playoffs</h3>
+        At this time, there are no provisions for a playoff to determine a league winner
+
+        Discussion and Reasoning:
+        Initial Draft Redo
+        This is a feature that may be more useful in the future, if we open drafting earlier than the end of build season. Primarily this is designed to allow people to add more members to the league between the creation of the league and the start of the season, but could also be used if there is a significant shake-up in the team list or event schedules.
+        Trades, Bidding and Free-Swapping
+        I believe we need the ability for people to add/drop teams as the season progresses to try to bolster their rosters and make up ground with breakout performances by undrafted teams or cut their losses by dropping promising teams who turned up duds (ala Bomb Squad 2013 or HOT in 2011).
+        We have a few options for how to do add/drop. One is to just have free-swapping, where players can swap teams at will with no waiting period. This is how Fantasy LoL worked. There were no provisions for direct trades with other players, but you could trade ad-hoc by coordinating ahead of time and dropping your player for the other to pick up.
+        The other option, in the rules as written above, is to have a “waiver” or bidding period similar to how Fantasy Football works. This acts as a “rebalancing” mechanic which gives lower ranked players first dibs on teams being dropped. However, it does not work well as a direct trade mechanic because the bid winner is automatic and based on rank, so the two players who would want to trade can’t guarantee that it will go through. It also makes the trade process very complicated. If Player A and Player B want to trade Team 1 and Team 2 respectively:
+        Player A posts Team 1, picks a dummy team (Team 3) to swap for
+        Player B bids on the posted team with Team 2, and has to win the bid
+        Player B gets Team 1 and drops Team 2, Player A gets Team 3
+        Player A now has to drop Team 3 and add Team 2, which is immediate (no bidding process) because it is within the 12 hour window since adding Team 3
+        Because of how our FRC works with teams not having defined roles in games, and because our fantasy setup segregates rosters week-to-week, trading is not likely to be a frequent desire. In general, such as in the above scenario, one of the teams is usually objectively better than the other, so a trade makes no sense. The only way a trade really makes sense is in the context of “I’ll give you Team 1 in week 4 if you give me Team 3 in week 6”, but this gets very complicated with the segregated rosters because it’s not a direct trade and has to involve more than just those two teams. For this reason, I have chosen to eschew direct trade options in this version of the rules.
+        Playoffs
+        Playoff options are TBD. With DCMPs on different weeks, I don’t think we can easily include them since some overlap with the “regular” season. A World Champs “playoff” could be done with the top 4 ranked players (or all players, if it’s a 4-team league), but because it all happens in one weekend simultaneously it’s hard to do a true playoff bracket.
+        One option is to only do 5 weeks of the regional competition, leave out week 6 regionals and districts and do 2 or 3 rounds of playoffs using the DCMPs and CMP. With the segregated rosters, any playoff option would require a new draft before each round.
+
+        Secondary SWAP proposal
+        SWAPs automatically occur every night at 2359 PT.
+        Each day, a player can designate one team on their roster for the upcoming week for SWAP.
+        Designations are locked at 1059 PT.
+        Once designations are locked, players can make an ordered list of teams they wish to acquire called the ACQUIRE LIST.
+        The pool of teams that each player can choose from includes undrafted teams as well as teams designated for SWAP.
+        ACQUIRE LISTs have a maximum number of teams equal to the number of players in the league.
+        For example, if a team has 6 players, each player’s ACQUIRE LIST will be a maximum of 6 teams long.
+        If a player does not make an ACQUIRE LIST, a swap does not occur for that player and that player retains the team he/she designated for SWAP.
+        When a SWAP occurs, the lowest ranked player in the league receives the highest ranked available team on his/her ACQUIRE LIST.  The next lowest ranked player in the league then receives the highest ranked available team on his/her ACQUIRE LIST.  This continues until the highest ranked player in the league has received a team from his/her ACQUIRE LIST.
+
+    </p>
+</div>
