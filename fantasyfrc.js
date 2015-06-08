@@ -7,7 +7,7 @@ var database = require('./controllers/database.js');
 var https = require('https');
 var http = require('http');
 var passport = require('passport');
-var auth = require('./lib/auth.js');
+//var auth = require('./lib/auth.js');
 
 /****** adding database schema ******/
 var Team = require('./models/teams.js');
@@ -63,7 +63,8 @@ var auth = require('./lib/auth.js')(app, {
     successRedirect: '/dashboard',
     failureRedirect: '/loginneeded'
 });
-auth.init() //links in Passport middleware:
+
+//links in Passport middleware:
 auth.init();
 
 //now we can specify our auth routes:
@@ -90,15 +91,26 @@ switch(app.get('env')){
         throw new Error('Unknown execution environment: ' + app.get('env'));
 }
 
+/***** login status *****/
+/*
+var login;
+
+new function(req){
+    if(!req.session.user)login="Login";
+    login=req.user_id;
+        };
+*/
+
+
 /****** get twitter data ******/
-var twitter = require('./lib/twitter')({
+/*var twitter = require('./lib/twitter')({
     consumerKey: credentials.twitter.consumerKey,
     consumerSecret: credentials.twitter.consumerSecret
 });
 
 twitter.search('#frcbtl', 10, function(result){
     //tweets will be in result.statuses
-});
+});*/
 
 /****** DATABASE CONTROLLERS ******/
 //eventUpdate.eventUpdate('event/2013mawo');

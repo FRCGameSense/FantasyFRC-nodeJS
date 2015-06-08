@@ -16,13 +16,9 @@ module.exports = function(app) {
     app.get('/rules', main.rules);
     app.get('/statistics', main.statistics);
     app.get('/submitBugReport', main.submitBugReport);
-//    app.get('/account', user.registerRoutes);
     app.get('/login', main.login);
 
-//    app.get('/account', user.account);
     app.get('/dashboard', main.dashboard);
-//    app.get('/league', user.league);
-
-//    app.get('/matchups', user.matchups);
-
+    app.get('/league', main.league);
+    app.get('/matchups', main.matchups);
 };

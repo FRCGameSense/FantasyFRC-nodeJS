@@ -17,7 +17,7 @@
 
 
         <!-- Custom Fonts -->
- <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+ <link href="/vendor/bootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,16 +38,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="FantasyFRC" height="70px" style="transform:translateY(-20px)"></a>
+                <a class="navbar-brand" href="/"><img src="/img/logo.png" alt="FantasyFRC" height="40px" style="transform:translateY(-7px)"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/dashboard">Dashboard</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">View <b class="caret"></b></a>
+<!--                    <li class="dropdown">
+                        <a href="/dashboard" data-toggle="dropdown">Dashboard<b></b></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="/league">League</a>
@@ -55,16 +52,19 @@
                             <li>
                                 <a href="/matchups">Matchups</a>
                             </li>
-                            <li>
-                                <a href="/statistics">Statistics</a>
-                            </li>
-                            <li>
-                                <a href="/rules">Rules</a>
-                            </li>
                         </ul>
+                    </li>-->
+                    <li>
+                        <a href="/auth/facebook">Login</a>
                     </li>
                     <li>
-                        <a href = "{{link}}">{{status}}</a>
+                        <a href="/dashboard">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/statistics">Statistics</a>
+                    </li>
+                    <li>
+                        <a href="/rules">Rules</a>
                     </li>
                     <li>
                         <a href="/submitBugReport">Bug Report</a>
@@ -106,5 +106,6 @@
 
         <!-- Bootstrap Core JavaScript -->
         <script src="{{static '/vendor/bootstrap/js/bootstrap.min.js'}}"></script>
+
     </body>
 </html>
