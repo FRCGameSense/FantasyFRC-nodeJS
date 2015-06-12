@@ -17,7 +17,10 @@ exports.contact = (function (req, res) {
 exports.dashboard = (function (req, res) {
     if(!req.session.passport.user)
         return res.redirect(303, '/loginneeded');
-    res.render('dashboard');
+
+    /*** Import Dashboard Data Controller***/
+    var data = require('../controllers/dashboard.js');
+    res.render('dashboard', data.data)
 });
 exports.league = (function (req, res) {
     res.render('league');

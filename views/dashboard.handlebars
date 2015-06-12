@@ -1,11 +1,12 @@
 <body>
 <link href="{{static '/css/dashboard.css'}}" rel="stylesheet">
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="/dashboard">Overview <span class="sr-only">(current)</span></a></li>
-                <li><a href="/matchups">Matchups</a></li>
+                <li><a href="/matchups">Current Week</a></li>
                 <li><a href="/league">League</a></li>
                 <li><a href="#">Import</a></li>
             </ul>
@@ -50,93 +51,101 @@
 
 
             <h2 class="sub-header">My Lineup</h2>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Week #</th>
-                        <th>Team 1</th>
-                        <th>Pts</th>
-                        <th>Team 2</th>
-                        <th>Pts</th>
-                        <th>Team 3</th>
-                        <th>Pts</th>
-                        <th>Team 4</th>
-                        <th>Pts</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>{{team1-1}}</td>
-                        <td>{{team1-1-pts}}</td>
-                        <td>{{team2-1}}</td>
-                        <td>{{team2-1-pts}}</td>
-                        <td>{{team3-1}}</td>
-                        <td>{{team3-1-pts}}</td>
-                        <td>{{team4-1}}</td>
-                        <td>{{team4-1-pts}}</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>{{team1-2}}</td>
-                        <td>{{team1-2-pts}}</td>
-                        <td>{{team2-2}}</td>
-                        <td>{{team2-2-pts}}</td>
-                        <td>{{team3-2}}</td>
-                        <td>{{team3-2-pts}}</td>
-                        <td>{{team4-2}}</td>
-                        <td>{{team4-2-pts}}</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>{{team1-3}}</td>
-                        <td>{{team1-3-pts}}</td>
-                        <td>{{team2-3}}</td>
-                        <td>{{team2-3-pts}}</td>
-                        <td>{{team3-3}}</td>
-                        <td>{{team3-3-pts}}</td>
-                        <td>{{team4-3}}</td>
-                        <td>{{team4-3-pts}}</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>{{team1-4}}</td>
-                        <td>{{team1-4-pts}}</td>
-                        <td>{{team2-4}}</td>
-                        <td>{{team2-4-pts}}</td>
-                        <td>{{team3-4}}</td>
-                        <td>{{team3-4-pts}}</td>
-                        <td>{{team4-4}}</td>
-                        <td>{{team4-4-pts}}</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>{{team1-5}}</td>
-                        <td>{{team1-5-pts}}</td>
-                        <td>{{team2-5}}</td>
-                        <td>{{team2-5-pts}}</td>
-                        <td>{{team3-5}}</td>
-                        <td>{{team3-5-pts}}</td>
-                        <td>{{team4-5}}</td>
-                        <td>{{team4-5-pts}}</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>{{team1-6}}</td>
-                        <td>{{team1-6-pts}}</td>
-                        <td>{{team2-6}}</td>
-                        <td>{{team2-6-pts}}</td>
-                        <td>{{team3-6}}</td>
-                        <td>{{team3-6-pts}}</td>
-                        <td>{{team4-6}}</td>
-                        <td>{{team4-6-pts}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <div id="output"></div>
+                <script id="myLineupTemplate" type="text/x-handlebars-template">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Week #</th>
+                                <th>Team 1</th>
+                                <th>Pts</th>
+                                <th>Team 2</th>
+                                <th>Pts</th>
+                                <th>Team 3</th>
+                                <th>Pts</th>
+                                <th>Team 4</th>
+                                <th>Pts</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>{{{t1}}}</td>
+                                <td>{{t1pts}}</td>
+                                <td>{{t2}}</td>
+                                <td>{{t2pts}}</td>
+                                <td>{{t3}}</td>
+                                <td>{{t3pts}}</td>
+                                <td>{{t4}}</td>
+                                <td>{{t4pts}}</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>{{team1-2}}</td>
+                                <td>{{team1-2-pts}}</td>
+                                <td>{{team2-2}}</td>
+                                <td>{{team2-2-pts}}</td>
+                                <td>{{team3-2}}</td>
+                                <td>{{team3-2-pts}}</td>
+                                <td>{{team4-2}}</td>
+                                <td>{{team4-2-pts}}</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>{{team1-3}}</td>
+                                <td>{{team1-3-pts}}</td>
+                                <td>{{team2-3}}</td>
+                                <td>{{team2-3-pts}}</td>
+                                <td>{{team3-3}}</td>
+                                <td>{{team3-3-pts}}</td>
+                                <td>{{team4-3}}</td>
+                                <td>{{team4-3-pts}}</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>{{team1-4}}</td>
+                                <td>{{team1-4-pts}}</td>
+                                <td>{{team2-4}}</td>
+                                <td>{{team2-4-pts}}</td>
+                                <td>{{team3-4}}</td>
+                                <td>{{team3-4-pts}}</td>
+                                <td>{{team4-4}}</td>
+                                <td>{{team4-4-pts}}</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>{{team1-5}}</td>
+                                <td>{{team1-5-pts}}</td>
+                                <td>{{team2-5}}</td>
+                                <td>{{team2-5-pts}}</td>
+                                <td>{{team3-5}}</td>
+                                <td>{{team3-5-pts}}</td>
+                                <td>{{team4-5}}</td>
+                                <td>{{team4-5-pts}}</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>{{team1-6}}</td>
+                                <td>{{team1-6-pts}}</td>
+                                <td>{{team2-6}}</td>
+                                <td>{{team2-6-pts}}</td>
+                                <td>{{team3-6}}</td>
+                                <td>{{team3-6-pts}}</td>
+                                <td>{{team4-6}}</td>
+                                <td>{{team4-6-pts}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </script>
+
+
+
+
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{{static 'js/dashboard.js'}}"></script>
 
 </body>

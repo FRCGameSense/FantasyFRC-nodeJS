@@ -7,6 +7,7 @@ var database = require('./controllers/database.js');
 var https = require('https');
 var http = require('http');
 var passport = require('passport');
+
 //var auth = require('./lib/auth.js');
 
 /****** adding database schema ******/
@@ -36,6 +37,9 @@ var handlebars = require('express3-handlebars').create({
         },
         status: function() {
             return require('./lib/login.js').status();
+        },
+        alliance: function(user){
+            return require('./controllers/dashboard.js');
         }
     }
 });

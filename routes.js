@@ -3,6 +3,7 @@
  */
 var main = require('./handlers/main.js');
 //var user = require('./controllers/userUpdate');
+//var dash = require('./controllers/dashboard.js');
 
 module.exports = function(app) {
 
